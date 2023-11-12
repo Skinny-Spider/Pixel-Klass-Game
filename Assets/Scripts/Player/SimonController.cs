@@ -12,8 +12,8 @@ public class SimonController : MonoBehaviour
     public bool isGrounded = true;
     private Rigidbody2D rb;
 
-    public float teleportHeight = -9.0f; // Die Höhe, bei der der Spieler teleportiert wird
-    public Vector3 teleportPosition = new Vector3(-9f, -90f, 0f); // Zielteleportposition
+    public float DeathHeight = -9.0f; // Die Höhe, bei der der Spieler teleportiert wird
+    public Vector3 Spawn = new Vector3(-9f, -90f, 0f); // Zielteleportposition
 
     private void Start()
     {
@@ -39,7 +39,13 @@ public class SimonController : MonoBehaviour
     }
 
 
-   
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        
+    }
+
+
 
 
 
@@ -83,14 +89,15 @@ public class SimonController : MonoBehaviour
 
 
         // Überprüfen der Höhe und Teleportieren
-        if (transform.position.y <= teleportHeight)
+        if (transform.position.y <= DeathHeight)
         {
-            TeleportPlayer();
+            Death();
         }
     }
 
-    private void TeleportPlayer()
+
+    private void Death()
     {
-        transform.position = teleportPosition;
+        transform.position = Spawn;
     }
 }
